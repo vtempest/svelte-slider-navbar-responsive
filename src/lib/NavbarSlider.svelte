@@ -20,17 +20,18 @@
 </script>
 
 <div
-  class={position === "left" 
+  class={position === "left"
     ? "navigation bg-white h-full min-h-screen rounded-r-[15px]  min-w-[100px] flex flex-col items-start justify-start  z-10"
-    :"navigation bg-white w-full min-w-[300px] h-[70px] rounded-[15px] grid  place-items-center z-10"
-}
-
+    : "navigation bg-white w-full min-w-[300px] h-[70px] rounded-[15px] grid  place-items-center z-10"}
 >
-
-  <ul class={ position == "left" ?"list-none w-full relative" :  "list-none flex relative" }>
+  <ul
+    class={position == "left"
+      ? "list-none w-full relative"
+      : "list-none flex relative"}
+  >
     {#each menuItems as item, index}
       <li
-        class="p-[5px] z-[3] cursor-pointer"
+        class="py-[5px] px-[2px] z-[3] cursor-pointer w-[75px]"
         class:active={activeIndex === index}
         on:click={() => setActiveLink(index)}
       >
@@ -39,9 +40,9 @@
           class="no-underline text-[#222327] flex flex-col items-center"
         >
           <span
-            class="text text-[1.05em] font-medium  text-blue-400 py-[5px] px-[5px]  rounded-[12px] opacity-0 transform -translate-y-[30px] transition-all duration-500 ease-in-out
+            class="text text-[1.05em] font-medium text-blue-400 py-[5px] px-[5px] rounded-[12px] opacity-0 transform -translate-y-[30px] transition-all duration-500 ease-in-out
                   {activeIndex === index
-              ?  ' translate-y-[10px] opacity-100'
+              ? ' translate-y-[10px] opacity-100'
               : ''}"
           >
             {item.text}
@@ -60,29 +61,23 @@
       </li>
     {/each}
     {#if position == "left"}
-    <div
-      class="indicator w-[50px] h-[50px]  rounded-full  border-[#222327] {highlightColor} absolute right-[-38px] z-[2] transition-all duration-300 ease-in-out flex items-center justify-center"
-      style="top: {activeIndex * 72 + 2}px;"
-    >
-      <span class="icon text-white">
-        <svelte:component this={menuItems[activeIndex].icon} size={24} />
-      </span>
-    </div>
+      <div
+        class="indicator w-[50px] h-[50px] rounded-full border-[#222327] {highlightColor} absolute right-[-38px] z-[2] transition-all duration-300 ease-in-out flex items-center justify-center"
+        style="top: {activeIndex * 72 + 2}px;"
+      >
+        <span class="icon text-white">
+          <svelte:component this={menuItems[activeIndex].icon} size={24} />
+        </span>
+      </div>
     {:else}
-
-    <div
-      class="indicator w-[50px] h-[50px] rounded-full  border-[#222327] {highlightColor} absolute  {position ==
-      'top'
-        ? '-bottom-[48%]'
-        : '-top-[54%]'}  z-[2] transition-all duration-300 ease-in-out
-        translate-x-[0px]
-            {activeIndex === 0 ? 'translate-x-[-10px]' : ''}
-            {activeIndex === 1 ? 'translate-x-[62px]' : ''}
-            {activeIndex === 2 ? 'translate-x-[142px]' : ''}
-            {activeIndex === 3 ? 'translate-x-[232px]' : ''}"
-    ></div>
-
+      <div
+        class="indicator w-[50px] h-[50px] rounded-full border-[#222327] {highlightColor} absolute {position ==
+        'top'
+          ? '-bottom-[48%]'
+          : '-top-[54%]'}  z-[2] transition-all duration-300 ease-in-out
+       "
+            style="left: {activeIndex < 2 ? activeIndex * 75 + 12: activeIndex *75 + 12 }px;"
+      ></div>
     {/if}
-
   </ul>
 </div>
